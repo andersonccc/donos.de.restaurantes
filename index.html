@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Treinamento iFood para Donos de Restaurante — Anderson Cruz</title>
+  <meta name="description" content="Aprenda a gerenciar sua loja no iFood e turbine seus pedidos. Treinamento prático do básico ao avançado, sem depender de gestor." />
+  <meta property="og:title" content="Treinamento iFood para Donos de Restaurante — Anderson Cruz" />
+  <meta property="og:description" content="Domine o iFood, entenda as métricas e aumente seus pedidos por R$247." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --preto:        #0a0a0a;
+      --preto-card:   #111111;
+      --cinza:        #1a1a1a;
+      --cinza2:       #242424;
+      --vermelho:     #ff8c1a;
+      --vermelho-esc: #d9710a;
+      --branco:       #ffffff;
+      --cinza-txt:    #aaaaaa;
+      --ouro:         #f5a623;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--preto); color: var(--branco); font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1e1e1e;
+      padding: 13px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .h-nome { font-size: 13px; font-weight: 700; }
+    .h-nome span { color: var(--vermelho); }
+    .h-btn {
+      background: var(--vermelho); color: var(--branco);
+      font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700;
+      padding: 9px 20px; border-radius: 8px; border: none; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      transition: background .2s, transform .15s;
+    }
+    .h-btn:hover { background: var(--vermelho-esc); transform: scale(1.03); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 130px 24px 90px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(230,57,70,0.14) 0%, transparent 65%),
+        var(--preto);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(230,57,70,0.12);
+      border: 1px solid rgba(230,57,70,0.4);
+      color: var(--vermelho);
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      padding: 6px 18px; border-radius: 999px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5.5vw, 52px);
+      font-weight: 900; line-height: 1.15;
+      max-width: 760px; margin: 0 auto 16px;
+      letter-spacing: -1.5px;
+    }
+    .hero h1 em { font-style: normal; color: var(--vermelho); }
+    .hero-sub2 {
+      font-size: clamp(14px, 2vw, 17px);
+      color: var(--cinza-txt); max-width: 560px;
+      margin: 0 auto 36px; line-height: 1.7;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: var(--vermelho); color: var(--branco);
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 18px 44px; border-radius: 12px; border: none; cursor: pointer;
+      box-shadow: 0 0 36px rgba(230,57,70,0.45);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-cta:hover { background: var(--vermelho-esc); transform: translateY(-3px); box-shadow: 0 10px 44px rgba(230,57,70,0.55); }
+    .hero-selos {
+      display: flex; gap: 22px; margin-top: 28px;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .selo { font-size: 12px; color: var(--cinza-txt); display: flex; align-items: center; gap: 5px; }
+
+    .hero-preco {
+      margin-top: 30px;
+      display: flex; align-items: baseline; gap: 8px;
+      background: var(--preto-card);
+      border: 1px solid var(--cinza2);
+      border-radius: 12px;
+      padding: 12px 24px;
+    }
+    .hero-preco-valor { font-size: 26px; font-weight: 900; color: var(--vermelho); }
+    .hero-preco-label { font-size: 12px; color: var(--cinza-txt); }
+
+    /* ── PARA QUEM ── */
+    .secao { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+    .titulo-secao {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 900; text-align: center;
+      margin-bottom: 12px; letter-spacing: -0.5px;
+    }
+    .titulo-secao span { color: var(--vermelho); }
+    .subtitulo-secao {
+      text-align: center; color: var(--cinza-txt);
+      font-size: 15px; margin-bottom: 48px; max-width: 600px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    .para-quem-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .pq-card {
+      background: var(--preto-card);
+      border: 1px solid var(--cinza2);
+      border-top: 3px solid var(--vermelho);
+      border-radius: 14px; padding: 28px 22px;
+      transition: transform .2s, border-color .2s;
+    }
+    .pq-card:hover { transform: translateY(-4px); border-color: var(--vermelho); }
+    .pq-icone { font-size: 30px; margin-bottom: 12px; }
+    .pq-titulo { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .pq-desc { font-size: 13px; color: var(--cinza-txt); line-height: 1.7; }
+
+    /* ── MÓDULOS ── */
+    .secao-cinza { background: var(--cinza); padding: 80px 24px; }
+    .secao-cinza-inner { max-width: 960px; margin: 0 auto; }
+
+    .modulos-lista { display: flex; flex-direction: column; gap: 14px; margin-top: 0; }
+    .modulo-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--preto-card);
+      border: 1px solid var(--cinza2);
+      border-radius: 12px; padding: 22px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .modulo-card:hover { border-color: var(--vermelho); transform: translateX(4px); }
+    .modulo-num {
+      background: var(--vermelho);
+      color: var(--branco);
+      font-size: 13px; font-weight: 900;
+      min-width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .modulo-corpo { flex: 1; }
+    .modulo-titulo { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+    .modulo-desc { font-size: 13px; color: var(--cinza-txt); line-height: 1.65; }
+
+    .btn-modulos {
+      display: block; margin: 36px auto 0;
+      background: var(--vermelho); color: var(--branco);
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 16px 40px; border-radius: 12px; border: none; cursor: pointer;
+      width: fit-content;
+      transition: background .2s, transform .15s;
+    }
+    .btn-modulos:hover { background: var(--vermelho-esc); transform: translateY(-2px); }
+
+    /* ── CONQUISTAS ── */
+    .conquistas-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    }
+    .conquista-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--preto-card);
+      border: 1px solid var(--cinza2);
+      border-left: 4px solid var(--vermelho);
+      border-radius: 10px; padding: 16px 18px;
+      font-size: 14px; font-weight: 500; line-height: 1.5;
+    }
+    .conquista-icon { color: var(--vermelho); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── AUTORIDADE ── */
+    .autoridade {
+      padding: 80px 24px;
+      max-width: 720px; margin: 0 auto; text-align: center;
+    }
+    .autoridade h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 900; margin-bottom: 16px; }
+    .autoridade h2 span { color: var(--vermelho); }
+    .autoridade p { font-size: 15px; color: var(--cinza-txt); line-height: 1.8; margin-bottom: 24px; }
+    .btn-ig {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; border: 2px solid var(--vermelho);
+      color: var(--vermelho); font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 700;
+      padding: 10px 22px; border-radius: 8px; cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .btn-ig:hover { background: var(--vermelho); color: var(--branco); }
+
+    /* ── DEPOIMENTOS ── */
+    .secao-dep { background: var(--cinza); padding: 80px 24px; }
+    .secao-dep-inner { max-width: 960px; margin: 0 auto; }
+    .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .dep-card {
+      background: var(--preto-card);
+      border: 1px solid var(--cinza2);
+      border-radius: 14px; padding: 26px 22px;
+      transition: border-color .2s, transform .2s;
+    }
+    .dep-card:hover { border-color: var(--vermelho); transform: translateY(-3px); }
+    .dep-estrelas { color: var(--ouro); font-size: 14px; margin-bottom: 12px; }
+    .dep-texto { font-size: 13px; color: var(--cinza-txt); line-height: 1.75; margin-bottom: 18px; font-style: italic; }
+    .dep-autor { font-size: 13px; font-weight: 700; }
+    .dep-cargo { font-size: 11px; color: var(--cinza-txt); margin-top: 2px; }
+
+    /* ── OFERTA ── */
+    .oferta {
+      background: linear-gradient(135deg, #7a3d00, var(--vermelho-esc), var(--vermelho));
+      padding: 90px 24px; text-align: center;
+    }
+    .oferta-inner { max-width: 600px; margin: 0 auto; }
+    .oferta-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; opacity: .85; margin-bottom: 14px; }
+    .oferta h2 { font-size: clamp(22px, 4vw, 32px); font-weight: 900; margin-bottom: 12px; line-height: 1.25; }
+    .oferta-sub { font-size: 14px; opacity: .85; margin-bottom: 32px; }
+
+    .oferta-includes {
+      background: rgba(0,0,0,0.25);
+      border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 32px; text-align: left;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .oferta-item { font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+    .oferta-item span { color: #4ade80; font-size: 16px; }
+
+    .preco-label { font-size: 13px; opacity: .8; margin-bottom: 4px; }
+    .preco-por { font-size: 56px; font-weight: 900; line-height: 1; margin-bottom: 28px; letter-spacing: -2px; }
+    .preco-por small { font-size: 24px; font-weight: 600; vertical-align: super; letter-spacing: 0; }
+
+    .btn-comprar {
+      display: inline-block;
+      background: var(--branco); color: var(--vermelho-esc);
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 20px 52px; border-radius: 12px; border: none; cursor: pointer;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      transition: transform .15s, box-shadow .2s;
+    }
+    .btn-comprar:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 44px rgba(0,0,0,0.4); }
+    .oferta-selos { display: flex; gap: 20px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+    .oferta-selo { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; opacity: .85; }
+
+    /* ── FAQ ── */
+    .faq-wrap { max-width: 720px; margin: 0 auto; padding: 80px 24px; }
+    .faq-item {
+      border-bottom: 1px solid var(--cinza2);
+      padding: 20px 0;
+    }
+    .faq-pergunta {
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+    }
+    .faq-seta { color: var(--vermelho); font-size: 18px; transition: transform .3s; flex-shrink: 0; }
+    .faq-resposta {
+      font-size: 13px; color: var(--cinza-txt); line-height: 1.75;
+      max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s;
+    }
+    .faq-item.aberto .faq-seta { transform: rotate(45deg); }
+    .faq-item.aberto .faq-resposta { max-height: 200px; padding-top: 12px; }
+
+    /* ── RODAPÉ ── */
+    footer {
+      background: #050505;
+      border-top: 1px solid #1a1a1a;
+      padding: 32px 24px; text-align: center;
+    }
+    .footer-nome { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .footer-nome span { color: var(--vermelho); }
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .footer-link { font-size: 12px; color: var(--cinza-txt); display: flex; align-items: center; gap: 5px; transition: color .2s; }
+    .footer-link:hover { color: var(--vermelho); }
+    .footer-copy { font-size: 11px; color: #444; line-height: 1.7; }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 768px) {
+      .para-quem-grid { grid-template-columns: 1fr; }
+      .dep-grid { grid-template-columns: 1fr; }
+      .conquistas-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 500px) {
+      .modulo-card { flex-direction: column; gap: 12px; }
+      header { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="h-nome">Anderson <span>Cruz</span> | O Gestor de Delivery</div>
+  <a href="https://pay.kiwify.com.br/exQI7J2" target="_blank">
+    <button class="h-btn">Quero Aprender</button>
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🍽️ Treinamento para Donos de Restaurante</div>
+  <h1>Aprenda a Gerenciar Sua Loja<br/>no iFood e <em>Turbine Seus Pedidos</em></h1>
+  <p class="hero-sub2">Um treinamento prático, do básico ao avançado, para donos de restaurante que querem dominar o iFood e aumentar o faturamento da própria loja — sem depender de ninguém.</p>
+
+  <a href="https://pay.kiwify.com.br/exQI7J2" target="_blank">
+    <button class="btn-cta">🚀 Quero Aprender Agora</button>
+  </a>
+
+  <div class="hero-preco">
+    <span class="hero-preco-valor">R$ 297</span>
+    <span class="hero-preco-label">pagamento único</span>
+  </div>
+
+  <div class="hero-selos">
+    <div class="selo">✅ Sem contratos</div>
+    <div class="selo">⚡ Acesso imediato</div>
+    <div class="selo">📈 Do zero ao avançado</div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="secao">
+  <h2 class="titulo-secao">Esse Treinamento Foi Feito<br/>Para <span>Você Que...</span></h2>
+  <p class="subtitulo-secao">É dono de restaurante no iFood e quer parar de depender de sorte — e começar a usar estratégia de verdade para vender mais.</p>
+  <div class="para-quem-grid">
+    <div class="pq-card">
+      <div class="pq-icone">❓</div>
+      <div class="pq-titulo">Está no iFood mas não entende a plataforma</div>
+      <div class="pq-desc">Sua loja está cadastrada mas você não sabe o que o algoritmo considera, por que as vendas oscilam ou como aparecer para mais clientes.</div>
+    </div>
+    <div class="pq-card">
+      <div class="pq-icone">💸</div>
+      <div class="pq-titulo">Sente que está deixando dinheiro na mesa</div>
+      <div class="pq-desc">Você recebe pedidos, mas sabe que poderia vender muito mais. Falta entender métricas, campanhas e o que realmente move o ponteiro no iFood.</div>
+    </div>
+    <div class="pq-card">
+      <div class="pq-icone">🎯</div>
+      <div class="pq-titulo">Quer gerenciar sua loja sem pagar gestor</div>
+      <div class="pq-desc">Você quer assumir o controle da gestão da sua loja no iFood, tomar decisões com dados e não depender de terceiros para crescer.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<div class="secao-cinza">
+  <div class="secao-cinza-inner">
+    <h2 class="titulo-secao">O Que Você Vai <span>Aprender</span></h2>
+    <p class="subtitulo-secao">4 módulos práticos. Do básico ao avançado. Tudo que você precisa saber para gerenciar sua loja no iFood com confiança e resultados reais.</p>
+    <div class="modulos-lista">
+      <div class="modulo-card">
+        <div class="modulo-num">01</div>
+        <div class="modulo-corpo">
+          <div class="modulo-titulo">Fundamentos do Delivery no iFood</div>
+          <div class="modulo-desc">Entenda como funciona o ecossistema do iFood, as regras da plataforma, o que impacta sua visibilidade e como estruturar sua loja para começar com o pé direito.</div>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">02</div>
+        <div class="modulo-corpo">
+          <div class="modulo-titulo">Métricas e Otimização da Loja</div>
+          <div class="modulo-desc">Aprenda a interpretar os dados do painel do iFood: taxa de aceitação, tempo de entrega, avaliações e taxa de conversão. Use esses números para tomar decisões que aumentam pedidos.</div>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">03</div>
+        <div class="modulo-corpo">
+          <div class="modulo-titulo">Precificação Inteligente</div>
+          <div class="modulo-desc">Como calcular o preço certo sem perder margem. Custo real, preço psicológico, promoções estratégicas e como usar os descontos do iFood a seu favor sem destruir o lucro.</div>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">04</div>
+        <div class="modulo-corpo">
+          <div class="modulo-titulo">Estratégias de Crescimento</div>
+          <div class="modulo-desc">Como escalar as vendas de forma consistente usando campanhas do iFood, otimização de perfil, fotos, categorias e posicionamento para aparecer na frente da concorrência.</div>
+        </div>
+      </div>
+    </div>
+    <a href="https://pay.kiwify.com.br/exQI7J2" target="_blank">
+      <button class="btn-modulos">📚 Quero Ter Acesso</button>
+    </a>
+  </div>
+</div>
+
+<!-- O QUE VOCÊ VAI CONSEGUIR -->
+<section class="secao">
+  <h2 class="titulo-secao">Depois do Treinamento,<br/>Você Vai <span>Conseguir:</span></h2>
+  <p class="subtitulo-secao">Sair daqui com as ferramentas certas para gerenciar sua loja no iFood de forma profissional.</p>
+  <div class="conquistas-grid">
+    <div class="conquista-item"><span class="conquista-icon">✔</span>Entender o algoritmo do iFood e fazer sua loja aparecer para mais clientes</div>
+    <div class="conquista-item"><span class="conquista-icon">✔</span>Ler as métricas do painel e saber o que cada número significa para o seu negócio</div>
+    <div class="conquista-item"><span class="conquista-icon">✔</span>Precificar seus produtos corretamente sem comprometer a margem de lucro</div>
+    <div class="conquista-item"><span class="conquista-icon">✔</span>Usar as campanhas de desconto do iFood de forma estratégica para ganhar mais pedidos</div>
+    <div class="conquista-item"><span class="conquista-icon">✔</span>Otimizar o cardápio, as fotos e a descrição dos itens para converter mais</div>
+    <div class="conquista-item"><span class="conquista-icon">✔</span>Tomar decisões baseadas em dados — não em achismo</div>
+  </div>
+</section>
+
+<!-- AUTORIDADE -->
+<section class="autoridade">
+  <h2>Seu <span>Instrutor</span></h2>
+  <p>
+    <strong>Anderson Cruz</strong> é especialista em gestão de delivery e criador do canal "Anderson Cruz | O Gestor de Delivery" no YouTube, onde compartilha estratégias práticas para donos de restaurante dominarem o iFood.<br/><br/>
+    Com experiência real operando e otimizando lojas no iFood, Anderson ensina o que realmente funciona — sem teoria desnecessária. Agora você acessa esse conhecimento num treinamento completo e direto ao ponto.
+  </p>
+  <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+    <a href="https://www.instagram.com/euandersoncruzdelivery/" target="_blank">
+      <button class="btn-ig">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        @euandersoncruzdelivery
+      </button>
+    </a>
+    <a href="https://wa.me/5511949158585" target="_blank">
+      <button class="btn-ig" style="border-color:#25D366;color:#25D366;">
+        💬 WhatsApp
+      </button>
+    </a>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<div class="secao-dep">
+  <div class="secao-dep-inner">
+    <h2 class="titulo-secao">Quem Aplicou, <span>Viu Resultado</span></h2>
+    <p class="subtitulo-secao" style="margin-bottom:40px;">Resultados reais de donos de restaurante que aplicaram o método.</p>
+    <div class="dep-grid">
+      <div class="dep-card">
+        <div class="dep-estrelas">★★★★★</div>
+        <div class="dep-texto">"Eu não entendia nada do painel do iFood. Depois do Módulo 2, comecei a acompanhar as métricas todo dia e entendi o que estava derrubando minhas vendas. Em 3 semanas já senti a diferença nos pedidos."</div>
+        <div class="dep-autor">Fernanda Oliveira</div>
+        <div class="dep-cargo">Dona de Açaíteria — Fortaleza/CE</div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-estrelas">★★★★★</div>
+        <div class="dep-texto">"O módulo de precificação foi revelador. Eu estava vendendo no prejuízo sem saber. Ajustei o cardápio seguindo o método e aumentei minha margem em 30% sem perder clientes."</div>
+        <div class="dep-autor">Paulo Henrique</div>
+        <div class="dep-cargo">Dono de Lanchonete — Goiânia/GO</div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-estrelas">★★★★★</div>
+        <div class="dep-texto">"Estava travada há meses no mesmo patamar de pedidos. Apliquei as estratégias de crescimento do Módulo 4 e no primeiro mês bati meu recorde de pedidos no iFood."</div>
+        <div class="dep-autor">Simone Freitas</div>
+        <div class="dep-cargo">Dona de Restaurante Japonês — Belo Horizonte/MG</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OFERTA FINAL -->
+<section class="oferta">
+  <div class="oferta-inner">
+    <div class="oferta-label">🍽️ Oferta Especial</div>
+    <h2>Treinamento iFood para<br/>Donos de Restaurante</h2>
+    <p class="oferta-sub">4 módulos práticos para você dominar o iFood e aumentar seus pedidos.</p>
+
+    <div class="oferta-includes">
+      <div class="oferta-item"><span>✅</span> Acesso vitalício aos 4 módulos</div>
+      <div class="oferta-item"><span>✅</span> Atualizações gratuitas</div>
+      <div class="oferta-item"><span>✅</span> Certificado de conclusão</div>
+      <div class="oferta-item"><span>✅</span> Suporte para dúvidas</div>
+    </div>
+
+    <div class="preco-label">Por apenas</div>
+    <div class="preco-por"><small>R$</small> 297<small>,00</small></div>
+    <div style="font-size:13px;opacity:.8;margin-bottom:28px;">Pagamento único ou parcelado no cartão</div>
+
+    <a href="https://pay.kiwify.com.br/exQI7J2" target="_blank">
+      <button class="btn-comprar">🔥 Quero Ter Acesso Agora</button>
+    </a>
+
+    <div class="oferta-selos">
+      <div class="oferta-selo">🔒 Pagamento 100% Seguro</div>
+      <div class="oferta-selo">✅ Acesso Imediato</div>
+      <div class="oferta-selo">💳 Parcele em até 12x</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="faq-wrap">
+  <h2 class="titulo-secao" style="margin-bottom:36px;">Perguntas <span>Frequentes</span></h2>
+  <div class="modulos-lista" style="gap:0;">
+
+    <div class="faq-item">
+      <div class="faq-pergunta" onclick="toggleFaq(this)">
+        Para qual plataforma o treinamento ensina?
+        <span class="faq-seta">+</span>
+      </div>
+      <div class="faq-resposta">O treinamento é 100% focado no iFood. Todo o conteúdo, estratégias e exemplos foram desenvolvidos especificamente para a plataforma.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-pergunta" onclick="toggleFaq(this)">
+        Preciso ter experiência para fazer o treinamento?
+        <span class="faq-seta">+</span>
+      </div>
+      <div class="faq-resposta">Não. O treinamento começa do zero e avança de forma progressiva. Qualquer dono de restaurante consegue acompanhar e aplicar o método, mesmo sem nenhuma experiência prévia com a plataforma.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-pergunta" onclick="toggleFaq(this)">
+        Esse treinamento é para quem quer virar gestor de delivery?
+        <span class="faq-seta">+</span>
+      </div>
+      <div class="faq-resposta">Não. Esse treinamento é focado exclusivamente em ensinar donos de restaurante a gerenciar a própria loja. Se você quer atuar como gestor profissional para múltiplos restaurantes, temos a Formação Gestor de Delivery, mais completa e voltada para essa carreira.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-pergunta" onclick="toggleFaq(this)">
+        Por quanto tempo terei acesso?
+        <span class="faq-seta">+</span>
+      </div>
+      <div class="faq-resposta">O acesso é vitalício. Você pode assistir quantas vezes quiser, no seu próprio ritmo, além de receber todas as atualizações futuras sem custo adicional.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-pergunta" onclick="toggleFaq(this)">
+        Como funciona o suporte para dúvidas?
+        <span class="faq-seta">+</span>
+      </div>
+      <div class="faq-resposta">Você terá acesso a um canal direto para enviar suas dúvidas sobre o conteúdo do treinamento e receber orientação para aplicar o método na sua loja.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="footer-nome">Anderson <span>Cruz</span> | O Gestor de Delivery</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/euandersoncruzdelivery/" target="_blank" class="footer-link">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      @euandersoncruzdelivery
+    </a>
+    <a href="https://wa.me/5511949158585" target="_blank" class="footer-link">
+      💬 (11) 94915-8585
+    </a>
+  </div>
+  <div class="footer-copy">
+    © 2026 Anderson Cruz — Todos os direitos reservados.<br/>
+    Esta página não é afiliada ou endossada pelo iFood. Os resultados podem variar de acordo com o esforço e dedicação de cada aluno.
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const aberto = item.classList.contains('aberto');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('aberto'));
+    if (!aberto) item.classList.add('aberto');
+  }
+</script>
+
+</body>
+</html>
